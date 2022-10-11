@@ -1,4 +1,4 @@
-import 'package:cup_flutter_app/app/core/theme/theme_config.dart';
+import 'package:cup_flutter_app/app/core/ui/theme/theme_config.dart';
 import 'package:cup_flutter_app/app/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
