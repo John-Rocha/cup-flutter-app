@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
           onPressed: () async {
             final prefs = await SharedPreferences.getInstance();
             prefs.clear();
+
             if (mounted) {
               Navigator.of(context)
                   .pushNamedAndRemoveUntil('/', (route) => false);
