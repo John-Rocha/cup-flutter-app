@@ -2,6 +2,7 @@ import 'package:cup_flutter_app/app/core/ui/styles/button_styles.dart';
 import 'package:cup_flutter_app/app/core/ui/styles/colors_app.dart';
 import 'package:cup_flutter_app/app/core/ui/styles/text_styles.dart';
 import 'package:cup_flutter_app/app/core/ui/widgets/button.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -99,6 +100,9 @@ class _LoginPageState extends State<LoginPage> {
                                 .copyWith(
                               color: context.colors.yellow,
                             ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => Navigator.of(context)
+                                  .pushNamed('/auth/register'),
                           ),
                         ],
                       ),
