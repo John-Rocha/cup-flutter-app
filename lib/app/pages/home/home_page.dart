@@ -1,6 +1,7 @@
+import 'package:cup_flutter_app/app/core/rest/custom_dio.dart';
 import 'package:cup_flutter_app/app/core/ui/widgets/button.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_getit/flutter_getit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,15 +19,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: Button.primary(
-          label: 'Deslogar',
+          label: 'Testando Auth',
           onPressed: () async {
-            final prefs = await SharedPreferences.getInstance();
-            prefs.clear();
-
-            if (mounted) {
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil('/', (route) => false);
-            }
+            context.get<CustomDio>().auth().get('/api/me');
           },
         ),
       ),
