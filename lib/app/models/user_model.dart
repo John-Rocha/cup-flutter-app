@@ -34,11 +34,11 @@ class UserModel {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'totalAlbum': totalAlbum,
-      'stickers': totalStickers,
-      'totalDuplicates': totalDuplicates,
-      'totalComplete': totalComplete,
-      'totalCompletePercent': totalCompletePercent,
+      'total_album': totalAlbum,
+      'total_stickers': totalStickers,
+      'total_duplicates': totalDuplicates,
+      'total_complete': totalComplete,
+      'total_complete_percent': totalCompletePercent,
     };
   }
 

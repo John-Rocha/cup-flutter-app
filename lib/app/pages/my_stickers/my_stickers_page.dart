@@ -7,7 +7,7 @@ class MyStickersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Stickers'),
+        title: const Text('Minhas figurinhas'),
       ),
       body: Container(),
     );
