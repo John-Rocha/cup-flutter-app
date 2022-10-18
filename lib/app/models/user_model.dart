@@ -9,7 +9,7 @@ class UserModel {
   final int totalAlbum;
 
   // Total de figurinhas que eu tenho no album
-  final int stickers;
+  final int totalStickers;
 
   // Total de figurinhas duplicadas
   final int totalDuplicates;
@@ -24,7 +24,7 @@ class UserModel {
     required this.id,
     required this.name,
     required this.totalAlbum,
-    required this.stickers,
+    required this.totalStickers,
     required this.totalDuplicates,
     required this.totalComplete,
     required this.totalCompletePercent,
@@ -35,7 +35,7 @@ class UserModel {
       'id': id,
       'name': name,
       'totalAlbum': totalAlbum,
-      'stickers': stickers,
+      'stickers': totalStickers,
       'totalDuplicates': totalDuplicates,
       'totalComplete': totalComplete,
       'totalCompletePercent': totalCompletePercent,
@@ -47,7 +47,7 @@ class UserModel {
       id: map['id'] as int,
       name: map['name'] as String,
       totalAlbum: map['total_album'] as int,
-      stickers: map['total_stickers'] as int,
+      totalStickers: map['total_stickers'] as int,
       totalDuplicates: map['total_duplicates'] as int,
       totalComplete: map['total_complete'] as int,
       totalCompletePercent: map['total_complete_percent'] as int,

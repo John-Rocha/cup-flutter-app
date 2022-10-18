@@ -1,19 +1,27 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cup_flutter_app/app/core/ui/styles/button_styles.dart';
 import 'package:cup_flutter_app/app/core/ui/styles/colors_app.dart';
 import 'package:cup_flutter_app/app/core/ui/styles/text_styles.dart';
 import 'package:cup_flutter_app/app/core/ui/widgets/button.dart';
+import 'package:cup_flutter_app/app/pages/home/presenter/home_presenter.dart';
+import 'package:cup_flutter_app/app/pages/home/view/home_view_impl.dart';
 import 'package:cup_flutter_app/app/pages/home/widgets/status_tile.dart';
 import 'package:cup_flutter_app/app/pages/home/widgets/sticker_percent_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final HomePresenter presenter;
+
+  const HomePage({
+    Key? key,
+    required this.presenter,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends HomeViewImpl {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: context.colors.primary,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => widget.presenter.logout(),
             icon: const Icon(
               Icons.logout,
               color: Colors.white,
@@ -56,29 +64,31 @@ class _HomePageState extends State<HomePage> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        const StickerPercentWidget(percent: 60),
+                        StickerPercentWidget(
+                          percent: userModel?.totalCompletePercent ?? 0,
+                        ),
                         const SizedBox(height: 20),
                         Text(
-                          '45 figurinhas',
+                          '${userModel?.totalStickers ?? 0} figurinhas',
                           style: context.textStyles.titleWhite,
                         ),
                         const SizedBox(height: 20),
                         StatusTile(
                           icon: Image.asset('assets/images/all_icon.png'),
                           label: 'Todas',
-                          value: 34,
+                          value: userModel?.totalAlbum ?? 0,
                         ),
                         const SizedBox(height: 20),
                         StatusTile(
                           icon: Image.asset('assets/images/missing_icon.png'),
                           label: 'Faltando',
-                          value: 500,
+                          value: userModel?.totalComplete ?? 0,
                         ),
                         const SizedBox(height: 20),
                         StatusTile(
                           icon: Image.asset('assets/images/repeated_icon.png'),
                           label: 'Repetidas',
-                          value: 30,
+                          value: userModel?.totalDuplicates ?? 0,
                         ),
                         const SizedBox(height: 20),
                         Button(

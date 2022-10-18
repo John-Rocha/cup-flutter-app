@@ -2,7 +2,7 @@ import 'package:cup_flutter_app/app/core/rest/custom_dio.dart';
 import 'package:cup_flutter_app/app/core/ui/global/global_context.dart';
 import 'package:cup_flutter_app/app/core/ui/global/global_context_impl.dart';
 import 'package:cup_flutter_app/app/core/ui/theme/theme_config.dart';
-import 'package:cup_flutter_app/app/pages/home/home_page.dart';
+import 'package:cup_flutter_app/app/pages/home/home_route.dart';
 import 'package:cup_flutter_app/app/pages/login/login_route.dart';
 import 'package:cup_flutter_app/app/pages/register/register_route.dart';
 import 'package:cup_flutter_app/app/pages/splash/splash_route.dart';
@@ -39,7 +39,7 @@ class FwcAlbumApp extends StatelessWidget {
           '/': (context) => const SplashRoute(),
           '/auth/login': (context) => const LoginRoute(),
           '/auth/register': (context) => const RegisterRoute(),
-          '/home': (context) => const HomePage(),
+          '/home': (context) => const HomeRoute(),
         },
       ),
     );
