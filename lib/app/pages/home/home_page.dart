@@ -100,7 +100,9 @@ class _HomePageState extends HomeViewImpl {
                             color: context.colors.yellow,
                           ),
                           label: 'Minhas Figurinhas',
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/my-stickers');
+                          },
                         ),
                       ],
                     ),
