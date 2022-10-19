@@ -1,3 +1,5 @@
+import 'package:cup_flutter_app/app/pages/my_stickers/widgets/sticker_group_filter_widget.dart';
+import 'package:cup_flutter_app/app/pages/my_stickers/widgets/sticker_group_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/sticker_status_filter_widget.dart';
@@ -19,13 +21,19 @@ class _MyStickersPageState extends State<MyStickersPage> {
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: Column(
-              children: [
-                // Status
-                StickerStatusFilterWidget(
-                  filterSelected: '',
-                )
-              ],
+            child: Column(children: const [
+              StickerStatusFilterWidget(
+                filterSelected: '',
+              ),
+              StickerGroupFilterWidget(),
+            ]),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return const StickerGroupWidget();
+              },
+              childCount: 10,
             ),
           ),
         ],
