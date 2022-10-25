@@ -8,16 +8,14 @@ import 'package:flutter/material.dart';
 class StickerStatusFilterWidget extends StatelessWidget {
   final String filterSelected;
 
-  const StickerStatusFilterWidget({
-    Key? key,
-    required this.filterSelected,
-  }) : super(key: key);
+  const StickerStatusFilterWidget({Key? key, required this.filterSelected})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(
-        vertical: 10,
+        vertical: 8,
       ),
       width: MediaQuery.of(context).size.width,
       child: Wrap(
@@ -44,7 +42,7 @@ class StickerStatusFilterWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width * .3,
             style: context.buttonStyles.primaryButton,
             labelStyle: context.textStyles.textSecondaryFontMedium,
-            label: 'Faltando',
+            label: 'Repetidas',
             onPressed: () {},
           ),
         ],
