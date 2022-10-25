@@ -17,13 +17,13 @@ class _StickerGroupFilterWidgetState extends State<StickerGroupFilterWidget> {
       padding: const EdgeInsets.all(8),
       child: SmartSelect.multiple(
         title: 'Filtro',
-        tileBuilder: (context, value) {
+        tileBuilder: (context, state) {
           return InkWell(
             onTap: () {
-              value.showModal();
+              state.showModal();
             },
             child: _StickerGroupTile(
-              label: value.selected.title?.join(', ') ?? 'Filtro',
+              label: state.selected.title?.join(', ') ?? 'Filtro',
             ),
           );
         },
