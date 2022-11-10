@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cup_flutter_app/app/core/ui/styles/button_styles.dart';
 import 'package:cup_flutter_app/app/core/ui/styles/colors_app.dart';
 import 'package:cup_flutter_app/app/core/ui/styles/text_styles.dart';
@@ -8,8 +7,7 @@ import 'package:flutter/material.dart';
 class StickerStatusFilterWidget extends StatelessWidget {
   final String filterSelected;
 
-  const StickerStatusFilterWidget({Key? key, required this.filterSelected})
-      : super(key: key);
+  const StickerStatusFilterWidget({super.key, required this.filterSelected});
 
   @override
   Widget build(BuildContext context) {
