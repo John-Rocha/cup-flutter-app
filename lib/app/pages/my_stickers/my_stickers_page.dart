@@ -33,7 +33,7 @@ class _MyStickersPageState extends State<MyStickersPage> {
               (context, index) {
                 return const StickerGroupWidget();
               },
-              childCount: 1,
+              childCount: 10,
             ),
           ),
         ],
