@@ -1,3 +1,4 @@
+import 'package:cup_flutter_app/app/core/ui/styles/colors_app.dart';
 import 'package:cup_flutter_app/app/core/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_awesome_select/flutter_awesome_select.dart';
@@ -37,6 +38,7 @@ class _StickerGroupFilterWidgetState extends State<StickerGroupFilterWidget> {
           title: (index, item) => item['title'] ?? '',
         ),
         choiceType: S2ChoiceType.switches,
+        choiceActiveStyle: S2ChoiceStyle(color: context.colors.primary),
         modalType: S2ModalType.bottomSheet,
         choiceGrouped: true,
         modalFilter: false,
