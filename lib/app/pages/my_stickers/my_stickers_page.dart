@@ -1,17 +1,25 @@
+import 'package:cup_flutter_app/app/pages/my_stickers/view/my_sticker_view_impl.dart';
+import 'package:flutter/material.dart';
+
+import 'package:cup_flutter_app/app/pages/my_stickers/presenter/my_stickers_presenter.dart';
 import 'package:cup_flutter_app/app/pages/my_stickers/widgets/sticker_group_filter_widget.dart';
 import 'package:cup_flutter_app/app/pages/my_stickers/widgets/sticker_group_widget.dart';
-import 'package:flutter/material.dart';
 
 import 'widgets/sticker_status_filter_widget.dart';
 
 class MyStickersPage extends StatefulWidget {
-  const MyStickersPage({super.key});
+  final MyStickersPresenter presenter;
+
+  const MyStickersPage({
+    Key? key,
+    required this.presenter,
+  }) : super(key: key);
 
   @override
   State<MyStickersPage> createState() => _MyStickersPageState();
 }
 
-class _MyStickersPageState extends State<MyStickersPage> {
+class _MyStickersPageState extends MyStickerViewImpl {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,19 +29,23 @@ class _MyStickersPageState extends State<MyStickersPage> {
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: Column(children: const [
+            child: Column(children: [
               StickerStatusFilterWidget(
-                filterSelected: '',
+                filterSelected: statusFilter,
               ),
-              StickerGroupFilterWidget(),
+              StickerGroupFilterWidget(countries: countries),
             ]),
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return const StickerGroupWidget();
+                final group = album[index];
+                return StickerGroupWidget(
+                  group: group,
+                  statusFilter: statusFilter,
+                );
               },
-              childCount: 10,
+              childCount: album.length,
             ),
           ),
         ],

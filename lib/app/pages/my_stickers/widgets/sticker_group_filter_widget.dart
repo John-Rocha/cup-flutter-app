@@ -1,10 +1,18 @@
-import 'package:cup_flutter_app/app/core/ui/styles/colors_app.dart';
-import 'package:cup_flutter_app/app/core/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_awesome_select/flutter_awesome_select.dart';
+import 'package:flutter_getit/flutter_getit.dart';
+
+import 'package:cup_flutter_app/app/core/ui/styles/colors_app.dart';
+import 'package:cup_flutter_app/app/core/ui/styles/text_styles.dart';
+import 'package:cup_flutter_app/app/pages/my_stickers/presenter/my_stickers_presenter.dart';
 
 class StickerGroupFilterWidget extends StatefulWidget {
-  const StickerGroupFilterWidget({Key? key}) : super(key: key);
+  final Map<String, String> countries;
+
+  const StickerGroupFilterWidget({
+    Key? key,
+    required this.countries,
+  }) : super(key: key);
 
   @override
   State<StickerGroupFilterWidget> createState() =>
@@ -12,11 +20,12 @@ class StickerGroupFilterWidget extends StatefulWidget {
 }
 
 class _StickerGroupFilterWidgetState extends State<StickerGroupFilterWidget> {
+  List<String>? selected;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: SmartSelect.multiple(
+      child: SmartSelect<String>.multiple(
         title: 'Filtro',
         tileBuilder: (context, state) {
           return InkWell(
@@ -25,15 +34,26 @@ class _StickerGroupFilterWidgetState extends State<StickerGroupFilterWidget> {
             },
             child: _StickerGroupTile(
               label: state.selected.title?.join(', ') ?? 'Filtro',
+              clearCallBack: () {
+                setState(() {
+                  selected = null;
+                  context.get<MyStickersPresenter>().countryFilter(selected);
+                });
+              },
             ),
           );
         },
-        onChange: (value) {},
+        selectedValue: selected ?? [],
+        onChange: (selectedValue) {
+          setState(() {
+            selected = selectedValue.value;
+          });
+          context.get<MyStickersPresenter>().countryFilter(selected);
+        },
         choiceItems: S2Choice.listFrom<String, Map<String, String>>(
-          source: [
-            {'value': 'BRA', 'title': 'Brasil'},
-            {'value': 'FWC', 'title': 'Fifa World Cup'}
-          ],
+          source: widget.countries.entries
+              .map((e) => {'value': e.key, 'title': e.value})
+              .toList(),
           value: (index, item) => item['value'] ?? '',
           title: (index, item) => item['title'] ?? '',
         ),
@@ -50,10 +70,12 @@ class _StickerGroupFilterWidgetState extends State<StickerGroupFilterWidget> {
 
 class _StickerGroupTile extends StatelessWidget {
   final String label;
+  final VoidCallback clearCallBack;
 
   const _StickerGroupTile({
     Key? key,
     required this.label,
+    required this.clearCallBack,
   }) : super(key: key);
 
   @override
@@ -71,10 +93,16 @@ class _StickerGroupTile extends StatelessWidget {
           children: [
             const Icon(Icons.filter_list),
             const SizedBox(width: 5),
-            Text(
-              label,
-              style: context.textStyles.textSecondaryFontRegular
-                  .copyWith(fontSize: 11),
+            Expanded(
+              child: Text(
+                label,
+                style: context.textStyles.textSecondaryFontRegular
+                    .copyWith(fontSize: 11),
+              ),
+            ),
+            InkWell(
+              onTap: clearCallBack,
+              child: const Icon(Icons.clear),
             ),
           ],
         ),

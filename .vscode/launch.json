@@ -16,7 +16,7 @@
             "flutterMode": "profile"
         },
         {
-            "name": "cup-flutter-app (release mode)",
+            "name": "cup-flutter-app-release",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

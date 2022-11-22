@@ -4,7 +4,7 @@ import 'package:cup_flutter_app/app/core/ui/global/global_context_impl.dart';
 import 'package:cup_flutter_app/app/core/ui/theme/theme_config.dart';
 import 'package:cup_flutter_app/app/pages/home/home_route.dart';
 import 'package:cup_flutter_app/app/pages/login/login_route.dart';
-import 'package:cup_flutter_app/app/pages/my_stickers/my_stickers_page.dart';
+import 'package:cup_flutter_app/app/pages/my_stickers/my_stickers_route.dart';
 import 'package:cup_flutter_app/app/pages/register/register_route.dart';
 import 'package:cup_flutter_app/app/pages/splash/splash_route.dart';
 import 'package:cup_flutter_app/app/pages/sticker_detail/sticker_detail_route.dart';
@@ -42,7 +42,7 @@ class FwcAlbumApp extends StatelessWidget {
           '/auth/login': (context) => const LoginRoute(),
           '/auth/register': (context) => const RegisterRoute(),
           '/home': (context) => const HomeRoute(),
-          '/my-stickers': (context) => const MyStickersPage(),
+          '/my-stickers': (context) => const MyStickersRoute(),
           '/sticker-detail': (context) => const StickerDetailRoute(),
         },
       ),
